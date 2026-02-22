@@ -21,7 +21,7 @@ try {
   // ignore if dotenv not available
 }
 import { NestFactory } from '@nestjs/core';
-import { ValidationPipe } from '@nestjs/common';
+import { ValidationPipe, ExceptionFilter, Catch, ArgumentsHost, HttpException, HttpStatus, Logger } from '@nestjs/common';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
@@ -43,6 +43,50 @@ async function bootstrap() {
   // and perform DTO validation. For now forbidNonWhitelisted is false to avoid
   // breaking clients during development.
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: false }));
+
+  // Global exception filter to ensure the server responds gracefully on
+  // unhandled errors and bad requests instead of crashing.
+  class AllExceptionsFilter implements ExceptionFilter {
+    private readonly logger = new Logger('AllExceptionsFilter');
+    catch(exception: unknown, host: ArgumentsHost) {
+      const ctx = host.switchToHttp();
+      const response = ctx.getResponse();
+      const request = ctx.getRequest();
+
+      let status = HttpStatus.INTERNAL_SERVER_ERROR;
+      let message: any = 'Internal server error';
+
+      if (exception instanceof HttpException) {
+        status = exception.getStatus();
+        const res = exception.getResponse();
+        if (typeof res === 'string') message = res;
+        else if (res && (res as any).message) message = (res as any).message;
+        else message = res;
+      } else if (exception && typeof exception === 'object' && (exception as any).message) {
+        message = (exception as any).message;
+      } else if (exception) {
+        message = String(exception);
+      }
+
+      this.logger.error(`HTTP ${status} - ${message}`, (exception as any)?.stack || '');
+
+      try {
+        // Some contexts (e.g. non-http) may not provide response/request
+        if (response && request) {
+          response.status(status).json({
+            statusCode: status,
+            timestamp: new Date().toISOString(),
+            path: request.url,
+            message,
+          });
+        }
+      } catch (err) {
+        this.logger.error('Failed to send error response', err as any);
+      }
+    }
+  }
+
+  app.useGlobalFilters(new AllExceptionsFilter());
   // Mount a minimal, hard-coded Swagger document early. This is intentionally
   // light-weight and does not require scanning all controllers or decorators.
   // It allows developers to open /api/docs even if the full swagger generation
@@ -260,4 +304,22 @@ async function bootstrap() {
   console.log(`Server listening on http://localhost:${port}`);
 }
 
-bootstrap();
+// Register process-level handlers to prevent the Node process from crashing
+// on unhandled promise rejections or uncaught exceptions. Log the issues so
+// they can be diagnosed. We avoid exiting to keep the server running for
+// resilience during development; consider exiting in production after
+// performing a graceful shutdown.
+const _processLogger = new Logger('Process');
+process.on('unhandledRejection', (reason: any, promise: any) => {
+  _processLogger.error('Unhandled Rejection at:', reason && (reason.stack || reason));
+});
+process.on('uncaughtException', (err: any) => {
+  _processLogger.error('Uncaught Exception thrown:', err && (err.stack || err));
+});
+
+bootstrap().catch((err) => {
+  const e: any = err;
+  // Log bootstrap failures but do not rethrow to avoid an abrupt crash in
+  // environments where a supervisor or container will restart the process.
+  console.error('Bootstrap failed:', e?.stack || e?.message || e);
+});

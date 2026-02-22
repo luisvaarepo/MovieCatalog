@@ -1,2 +1,3 @@
 C:\Users\Drako\source\repos\MovieCatalog\FrontEnd\obj\Debug\FrontEnd.esproj.CoreCompileInputs.cache
 C:\Users\Drako\source\repos\MovieCatalog\Backend\FrontEnd\obj\Debug\FrontEnd.esproj.CoreCompileInputs.cache
+C:\Users\Drako\source\repos\MovieCatalogNew\MovieCatalog\Application\FrontEnd\obj\Debug\FrontEnd.esproj.CoreCompileInputs.cache

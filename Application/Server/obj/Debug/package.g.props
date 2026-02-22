@@ -10,6 +10,7 @@
     <PackageJsonScriptsBuild Condition="$(PackageJsonScriptsBuild) == ''">tsc -p tsconfig.json</PackageJsonScriptsBuild>
     <PackageJsonScriptsClean Condition="$(PackageJsonScriptsClean) == ''">rm -rf dist</PackageJsonScriptsClean>
     <PackageJsonScriptsSeed Condition="$(PackageJsonScriptsSeed) == ''">ts-node src/seed.ts</PackageJsonScriptsSeed>
+    <PackageJsonScriptsTest Condition="$(PackageJsonScriptsTest) == ''">jest --passWithNoTests --runInBand --detectOpenHandles</PackageJsonScriptsTest>
     <PackageJsonKeywords Condition="$(PackageJsonKeywords) == ''">[]</PackageJsonKeywords>
     <PackageJsonAuthor Condition="$(PackageJsonAuthor) == ''"></PackageJsonAuthor>
     <PackageJsonLicense Condition="$(PackageJsonLicense) == ''">MIT</PackageJsonLicense>
@@ -31,5 +32,11 @@
     <PackageJsonDevdependenciesTsNode Condition="$(PackageJsonDevdependenciesTsNode) == ''">^10.9.1</PackageJsonDevdependenciesTsNode>
     <PackageJsonDevdependenciesTsNodeDev Condition="$(PackageJsonDevdependenciesTsNodeDev) == ''">^2.0.0</PackageJsonDevdependenciesTsNodeDev>
     <PackageJsonDevdependenciesTypescript Condition="$(PackageJsonDevdependenciesTypescript) == ''">^5.9.3</PackageJsonDevdependenciesTypescript>
+    <PackageJsonDevdependenciesJest Condition="$(PackageJsonDevdependenciesJest) == ''">^29.0.0</PackageJsonDevdependenciesJest>
+    <PackageJsonDevdependenciesTsJest Condition="$(PackageJsonDevdependenciesTsJest) == ''">^29.0.0</PackageJsonDevdependenciesTsJest>
+    <PackageJsonDevdependenciesTypesJest Condition="$(PackageJsonDevdependenciesTypesJest) == ''">^29.0.0</PackageJsonDevdependenciesTypesJest>
+    <PackageJsonDevdependenciesNestjsTesting Condition="$(PackageJsonDevdependenciesNestjsTesting) == ''">^10.0.0</PackageJsonDevdependenciesNestjsTesting>
+    <PackageJsonDevdependenciesSupertest Condition="$(PackageJsonDevdependenciesSupertest) == ''">^6.0.0</PackageJsonDevdependenciesSupertest>
+    <PackageJsonDevdependenciesTypesSupertest Condition="$(PackageJsonDevdependenciesTypesSupertest) == ''">^2.0.12</PackageJsonDevdependenciesTypesSupertest>
   </PropertyGroup>
 </Project>

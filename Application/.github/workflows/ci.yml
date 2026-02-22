@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  frontend-tests:
+    name: FrontEnd tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install FrontEnd dependencies
+        run: npm ci
+        working-directory: FrontEnd
+
+      - name: Run FrontEnd tests
+        run: npm test --silent
+        working-directory: FrontEnd
+
+  server-tests:
+    name: Server tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install Server dependencies
+        run: npm ci
+        working-directory: Server
+
+      - name: Run Server tests
+        run: npm test --silent
+        working-directory: Server
