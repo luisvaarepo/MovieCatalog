@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <PropertyGroup>
+    <PackageJsonName Condition="$(PackageJsonName) == ''">frontend</PackageJsonName>
+    <PackageJsonVersion Condition="$(PackageJsonVersion) == ''">1.0.0</PackageJsonVersion>
+    <PackageJsonDescription Condition="$(PackageJsonDescription) == ''"></PackageJsonDescription>
+    <PackageJsonMain Condition="$(PackageJsonMain) == ''">app.js</PackageJsonMain>
+    <PackageJsonDirectoriesLib Condition="$(PackageJsonDirectoriesLib) == ''">lib</PackageJsonDirectoriesLib>
+    <PackageJsonScriptsDev Condition="$(PackageJsonScriptsDev) == ''">next dev -p 3001</PackageJsonScriptsDev>
+    <PackageJsonScriptsBuild Condition="$(PackageJsonScriptsBuild) == ''">next build</PackageJsonScriptsBuild>
+    <PackageJsonScriptsClean Condition="$(PackageJsonScriptsClean) == ''">rm -rf .next</PackageJsonScriptsClean>
+    <PackageJsonScriptsTest Condition="$(PackageJsonScriptsTest) == ''">vitest</PackageJsonScriptsTest>
+    <PackageJsonScriptsTestWatch Condition="$(PackageJsonScriptsTestWatch) == ''">vitest --watch</PackageJsonScriptsTestWatch>
+    <PackageJsonScriptsTestCoverage Condition="$(PackageJsonScriptsTestCoverage) == ''">vitest --coverage</PackageJsonScriptsTestCoverage>
+    <PackageJsonKeywords Condition="$(PackageJsonKeywords) == ''">[]</PackageJsonKeywords>
+    <PackageJsonAuthor Condition="$(PackageJsonAuthor) == ''"></PackageJsonAuthor>
+    <PackageJsonLicense Condition="$(PackageJsonLicense) == ''">ISC</PackageJsonLicense>
+    <PackageJsonType Condition="$(PackageJsonType) == ''">module</PackageJsonType>
+    <PackageJsonTypes Condition="$(PackageJsonTypes) == ''">./app.d.ts</PackageJsonTypes>
+    <PackageJsonDependenciesAxios Condition="$(PackageJsonDependenciesAxios) == ''">^1.13.5</PackageJsonDependenciesAxios>
+    <PackageJsonDependenciesNext Condition="$(PackageJsonDependenciesNext) == ''">^16.1.6</PackageJsonDependenciesNext>
+    <PackageJsonDependenciesReact Condition="$(PackageJsonDependenciesReact) == ''">^18.2.0</PackageJsonDependenciesReact>
+    <PackageJsonDependenciesReactDom Condition="$(PackageJsonDependenciesReactDom) == ''">^18.2.0</PackageJsonDependenciesReactDom>
+    <PackageJsonDependenciesSwr Condition="$(PackageJsonDependenciesSwr) == ''">^2.4.0</PackageJsonDependenciesSwr>
+    <PackageJsonDevdependenciesTestingLibraryJestDom Condition="$(PackageJsonDevdependenciesTestingLibraryJestDom) == ''">^6.0.0</PackageJsonDevdependenciesTestingLibraryJestDom>
+    <PackageJsonDevdependenciesTestingLibraryReact Condition="$(PackageJsonDevdependenciesTestingLibraryReact) == ''">^14.3.1</PackageJsonDevdependenciesTestingLibraryReact>
+    <PackageJsonDevdependenciesTestingLibraryUserEvent Condition="$(PackageJsonDevdependenciesTestingLibraryUserEvent) == ''">^14.5.0</PackageJsonDevdependenciesTestingLibraryUserEvent>
+    <PackageJsonDevdependenciesTypesNode Condition="$(PackageJsonDevdependenciesTypesNode) == ''">25.3.0</PackageJsonDevdependenciesTypesNode>
+    <PackageJsonDevdependenciesVitejsPluginReact Condition="$(PackageJsonDevdependenciesVitejsPluginReact) == ''">^5.1.0</PackageJsonDevdependenciesVitejsPluginReact>
+    <PackageJsonDevdependenciesAutoprefixer Condition="$(PackageJsonDevdependenciesAutoprefixer) == ''">^10.4.14</PackageJsonDevdependenciesAutoprefixer>
+    <PackageJsonDevdependenciesJsdom Condition="$(PackageJsonDevdependenciesJsdom) == ''">^22.0.0</PackageJsonDevdependenciesJsdom>
+    <PackageJsonDevdependenciesPostcss Condition="$(PackageJsonDevdependenciesPostcss) == ''">^8.4.24</PackageJsonDevdependenciesPostcss>
+    <PackageJsonDevdependenciesTailwindcss Condition="$(PackageJsonDevdependenciesTailwindcss) == ''">^3.4.8</PackageJsonDevdependenciesTailwindcss>
+    <PackageJsonDevdependenciesTypescript Condition="$(PackageJsonDevdependenciesTypescript) == ''">5.9.3</PackageJsonDevdependenciesTypescript>
+    <PackageJsonDevdependenciesVitest Condition="$(PackageJsonDevdependenciesVitest) == ''">^4.0.18</PackageJsonDevdependenciesVitest>
+  </PropertyGroup>
+</Project>

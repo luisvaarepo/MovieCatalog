@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <PropertyGroup>
+    <PackageJsonName Condition="$(PackageJsonName) == ''">movie-backend</PackageJsonName>
+    <PackageJsonVersion Condition="$(PackageJsonVersion) == ''">1.0.0</PackageJsonVersion>
+    <PackageJsonDescription Condition="$(PackageJsonDescription) == ''">NestJS backend for Movie Catalog</PackageJsonDescription>
+    <PackageJsonMain Condition="$(PackageJsonMain) == ''">dist/main.js</PackageJsonMain>
+    <PackageJsonScriptsStart Condition="$(PackageJsonScriptsStart) == ''">node dist/main.js</PackageJsonScriptsStart>
+    <PackageJsonScriptsStartDev Condition="$(PackageJsonScriptsStartDev) == ''">ts-node-dev --respawn --transpile-only src/main.ts</PackageJsonScriptsStartDev>
+    <PackageJsonScriptsBuild Condition="$(PackageJsonScriptsBuild) == ''">tsc -p tsconfig.json</PackageJsonScriptsBuild>
+    <PackageJsonScriptsClean Condition="$(PackageJsonScriptsClean) == ''">rm -rf dist</PackageJsonScriptsClean>
+    <PackageJsonScriptsSeed Condition="$(PackageJsonScriptsSeed) == ''">ts-node src/seed.ts</PackageJsonScriptsSeed>
+    <PackageJsonKeywords Condition="$(PackageJsonKeywords) == ''">[]</PackageJsonKeywords>
+    <PackageJsonAuthor Condition="$(PackageJsonAuthor) == ''"></PackageJsonAuthor>
+    <PackageJsonLicense Condition="$(PackageJsonLicense) == ''">MIT</PackageJsonLicense>
+    <PackageJsonType Condition="$(PackageJsonType) == ''">commonjs</PackageJsonType>
+    <PackageJsonDependenciesNestjsCommon Condition="$(PackageJsonDependenciesNestjsCommon) == ''">^10.0.0</PackageJsonDependenciesNestjsCommon>
+    <PackageJsonDependenciesNestjsCore Condition="$(PackageJsonDependenciesNestjsCore) == ''">^10.0.0</PackageJsonDependenciesNestjsCore>
+    <PackageJsonDependenciesNestjsPlatformExpress Condition="$(PackageJsonDependenciesNestjsPlatformExpress) == ''">^10.0.0</PackageJsonDependenciesNestjsPlatformExpress>
+    <PackageJsonDependenciesNestjsSwagger Condition="$(PackageJsonDependenciesNestjsSwagger) == ''">^7.0.0</PackageJsonDependenciesNestjsSwagger>
+    <PackageJsonDependenciesNestjsTypeorm Condition="$(PackageJsonDependenciesNestjsTypeorm) == ''">^10.0.0</PackageJsonDependenciesNestjsTypeorm>
+    <PackageJsonDependenciesClassTransformer Condition="$(PackageJsonDependenciesClassTransformer) == ''">^0.5.1</PackageJsonDependenciesClassTransformer>
+    <PackageJsonDependenciesClassValidator Condition="$(PackageJsonDependenciesClassValidator) == ''">^0.14.0</PackageJsonDependenciesClassValidator>
+    <PackageJsonDependenciesDotenv Condition="$(PackageJsonDependenciesDotenv) == ''">^16.6.1</PackageJsonDependenciesDotenv>
+    <PackageJsonDependenciesReflectMetadata Condition="$(PackageJsonDependenciesReflectMetadata) == ''">^0.1.13</PackageJsonDependenciesReflectMetadata>
+    <PackageJsonDependenciesRxjs Condition="$(PackageJsonDependenciesRxjs) == ''">^7.8.0</PackageJsonDependenciesRxjs>
+    <PackageJsonDependenciesSqlite3 Condition="$(PackageJsonDependenciesSqlite3) == ''">^5.1.6</PackageJsonDependenciesSqlite3>
+    <PackageJsonDependenciesSwaggerUiExpress Condition="$(PackageJsonDependenciesSwaggerUiExpress) == ''">^4.6.3</PackageJsonDependenciesSwaggerUiExpress>
+    <PackageJsonDependenciesTypeorm Condition="$(PackageJsonDependenciesTypeorm) == ''">^0.3.17</PackageJsonDependenciesTypeorm>
+    <PackageJsonDevdependenciesTypesNode Condition="$(PackageJsonDevdependenciesTypesNode) == ''">^20.7.2</PackageJsonDevdependenciesTypesNode>
+    <PackageJsonDevdependenciesTsNode Condition="$(PackageJsonDevdependenciesTsNode) == ''">^10.9.1</PackageJsonDevdependenciesTsNode>
+    <PackageJsonDevdependenciesTsNodeDev Condition="$(PackageJsonDevdependenciesTsNodeDev) == ''">^2.0.0</PackageJsonDevdependenciesTsNodeDev>
+    <PackageJsonDevdependenciesTypescript Condition="$(PackageJsonDevdependenciesTypescript) == ''">^5.9.3</PackageJsonDevdependenciesTypescript>
+  </PropertyGroup>
+</Project>
