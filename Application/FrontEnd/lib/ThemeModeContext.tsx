@@ -11,14 +11,9 @@ type ContextValue = {
 const ThemeModeContext = createContext<ContextValue | undefined>(undefined);
 
 export function ThemeModeProvider({ children }: { children: React.ReactNode }) {
-  const [mode, setModeState] = useState<ThemeMode>(() => {
-    if (typeof window === 'undefined') return 'light';
-    const stored = window.localStorage.getItem('theme_mode');
-    if (stored === 'dark' || stored === 'light') return stored as ThemeMode;
-    // fallback to system preference
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
-    return 'light';
-  });
+  // Start with a deterministic value so server and initial client render match.
+  // Sync the real preference from localStorage / system on mount to avoid hydration mismatch.
+  const [mode, setModeState] = useState<ThemeMode>('light');
 
   const setMode = (m: ThemeMode) => {
     setModeState(m);
@@ -46,6 +41,20 @@ export function ThemeModeProvider({ children }: { children: React.ReactNode }) {
   // Ensure the html class reflects the current mode on mount/update
   useEffect(() => {
     if (typeof document === 'undefined') return;
+
+    // On first mount, read stored preference or system preference and apply it.
+    const stored = typeof window !== 'undefined' ? window.localStorage.getItem('theme_mode') : null;
+    if (stored === 'dark' || stored === 'light') {
+      setMode(stored as ThemeMode);
+    } else if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setMode('dark');
+    } else {
+      // apply default (light)
+      const root = document.documentElement;
+      root.classList.remove('dark');
+    }
+
+    // keep html class in sync when `mode` changes
     const root = document.documentElement;
     if (mode === 'dark') root.classList.add('dark');
     else root.classList.remove('dark');
